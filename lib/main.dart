@@ -25,15 +25,15 @@ class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
 
   List<Recipe> recipes = [
-    Recipe('recipe number 1', 'image path number number 1'),
-    Recipe('recipe number 2', 'image path number number 2'),
-    Recipe('recipe number 3', 'image path number number 3'),
-    Recipe('recipe number 4', 'image path number number 4'),
-    Recipe('recipe number 5', 'image path number number 5'),
-    Recipe('recipe number 6', 'image path number number 6'),
-    Recipe('recipe number 7', 'image path number number 7'),
-    Recipe('recipe number 8', 'image path number number 8'),
-    Recipe('recipe number 9', 'image path number number 9'),
+    Recipe('recipe number 1', 'assets/salad.jpeg'),
+    Recipe('recipe number 2', 'assets/salad.jpeg'),
+    Recipe('recipe number 3', 'assets/salad.jpeg'),
+    Recipe('recipe number 4', 'assets/salad.jpeg'),
+    Recipe('recipe number 5', 'assets/salad.jpeg'),
+    Recipe('recipe number 6', 'assets/salad.jpeg'),
+    Recipe('recipe number 7', 'assets/salad.jpeg'),
+    Recipe('recipe number 8', 'assets/salad.jpeg'),
+    Recipe('recipe number 9', 'assets/salad.jpeg'),
   ];
 
   @override
@@ -42,9 +42,28 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('This is the Recipes App'),
       ),
-      body: ListView.builder(itemBuilder: (context, index) {
-        return Text(recipes[index].label!);
-      }, itemCount: recipes.length, ),
+      body: ListView.builder(
+        itemBuilder: (context, index) {
+          return buileRecipeCard(recipes[index]);
+        }, itemCount: recipes.length,
+      ),
+    );
+  }
+
+  Widget buileRecipeCard(Recipe recipes){
+    return Card(
+      elevation:2.0,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Image.asset(recipes.imageUrl!),
+            SizedBox(height: 10,),
+            Text(recipes.label),
+          ],
+        ),
+      ),
     );
   }
 }
